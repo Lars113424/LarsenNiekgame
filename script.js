@@ -20,6 +20,7 @@ const GAMEOVER = 2;
 var spelStatus = SPELEN;
 var bullet;
 var tank;
+var achtergrond;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600;
@@ -59,7 +60,7 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-
+  image(achtergrond, 500, 500, 500, 500);
   // vijand
 
   // kogel
@@ -92,7 +93,8 @@ var checkGameOver = function() {
  */
 function preload() {
   bullet = loadImage('bullet.png');
-  tank = loadImage('tank.png')
+  tank = loadImage('tank.png');
+  achtergrond = loadImage ('achtergrond.png');
 }
 
 function setup() {
