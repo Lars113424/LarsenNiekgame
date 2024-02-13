@@ -18,11 +18,10 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
-var bullet;
-var tank;
-var achtergrond;
+var player;
+//var achtergrond;
 
-var spelerX = 600; // x-positie van speler
+var spelerX = 290; // x-positie van speler
 var spelerY = 600;
  // y-positie van speler
 
@@ -60,14 +59,15 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-  image(achtergrond, 500, 500, 500, 500);
+  //image(achtergrond, 500, 500, 500, 500);
   // vijand
 
   // kogel
-  image(bullet, 100, 100, 80, 80);
 
   // speler
-  image(tank, 200, 200);
+  image(player, spelerX, 800, 300, 300);
+
+  
 
   // punten en health
 
@@ -92,14 +92,13 @@ var checkGameOver = function() {
  * de p5 library, zodra het spel geladen is in de browser
  */
 function preload() {
-  bullet = loadImage('bullet.png');
-  tank = loadImage('tank.png');
-  achtergrond = loadImage ('achtergrond.png');
+  player = loadImage('player.png');
+  //achtergrond = loadImage ('achtergrond.png');
 }
 
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
-  createCanvas(1280, 720);
+  createCanvas(900, 1280);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
@@ -123,4 +122,7 @@ function draw() {
     // teken game-over scherm
 
   }
+  if (keyIsDown (D)) {
+    spelerX = spelerX + 200;
+   }
 }
