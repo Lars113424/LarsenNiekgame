@@ -19,7 +19,7 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 var cookie;
-var background;
+var backimage;
 //var achtergrond;
 
 var spelerX = 290; // x-positie van speler
@@ -78,7 +78,7 @@ var tekenAlles = function() {
 
   // speler
   image(cookie, spelerX, spelerY, 300, 300);
-  image(backgroundimage, 0, 0, 1000, 1000)
+  image(backimage, 0, 0, 1000, 1000)
 
   // achtergrond
 
@@ -106,14 +106,14 @@ var checkGameOver = function() {
  */
 function preload() {
   cookie = loadImage('cookie.png');
-  backgimage = loadImage('background.png')
+  backimage = loadImage('background.png')
   //achtergrond = loadImage ('achtergrond.png');
 
 }
 
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
-  createCanvas(900, 1280);
+  createCanvas(window.innerWidth, window.innerHeight);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
   //background('blue');
