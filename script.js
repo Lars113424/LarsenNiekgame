@@ -18,7 +18,8 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
-var player;
+var cookie;
+var background;
 //var achtergrond;
 
 var spelerX = 290; // x-positie van speler
@@ -76,7 +77,8 @@ var tekenAlles = function() {
   // kogel
 
   // speler
-  image(player, spelerX, spelerY, 300, 300);
+  image(cookie, spelerX, spelerY, 300, 300);
+  image(backgroundimage, 0, 0, 1000, 1000)
 
   // achtergrond
 
@@ -103,7 +105,8 @@ var checkGameOver = function() {
  * de p5 library, zodra het spel geladen is in de browser
  */
 function preload() {
-  player = loadImage('player.png');
+  cookie = loadImage('cookie.png');
+  backgimage = loadImage('background.png')
   //achtergrond = loadImage ('achtergrond.png');
 
 }
