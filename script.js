@@ -85,6 +85,9 @@ var verwerkBotsing = function() {
   image(cookie, 40, 100, 300, 300);
   line(405, 0, 405, 720,);
   strokeWeight(10);
+  text("Cookie's Eaten;", 40, 100)
+  text("Cookie's Eaten;", 40, 100)
+  textSize(46);
   // botsing kogel tegen vijand
 
   // update punten en health
@@ -109,8 +112,8 @@ var checkGameOver = function() {
  * de p5 library, zodra het spel geladen is in de browser
  */
 function preload() {
-  backimage = loadImage('background.png');
-  cookie = loadImage('cookie.png');
+  backimage = loadImage('afbeeldingen/background.png');
+  cookie = loadImage('afbeeldingen/cookie.png');
   
   //achtergrond = loadImage ('achtergrond.png');
 
