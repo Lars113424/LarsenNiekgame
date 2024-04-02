@@ -18,12 +18,13 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
-var cookie;
 var backimage;
+var cookie;
+
 //var achtergrond;
 
-var spelerX = 290; // x-positie van speler
-var spelerY = 800;
+var spelerX = 0; // x-positie van speler
+var spelerY = 100;
 
 var D = 68;
  // y-positie van speler
@@ -45,8 +46,7 @@ var beweegAlles = function() {
 
 
   // vijand
-  fill('blue');
-  rect(0, 0, 900, 1280);
+ 
   // kogel
 };
 
@@ -55,14 +55,7 @@ var beweegAlles = function() {
  * Verwijdert neergeschoten dingen
  * Updatet globale variabelen punten en health
  */
-var verwerkBotsing = function() {
-  // botsing speler tegen vijand
 
-  // botsing kogel tegen vijand
-
-  // update punten en health
-
-};
 
 /**
  * Tekent spelscherm
@@ -71,21 +64,32 @@ var verwerkBotsing = function() {
 
 
 var tekenAlles = function() {
-  //image(achtergrond, 500, 500, 500, 500);
+  // achtergrond
+  image(backimage, 0, 0, 1280, 720);
   // vijand
 
   // kogel
 
   // speler
-  image(cookie, spelerX, spelerY, 300, 300);
-  image(backimage, 0, 0, 1000, 1000)
+ 
+ 
 
-  // achtergrond
+
 
   // punten en health
  
 };
 
+var verwerkBotsing = function() {
+  // botsing speler tegen vijand
+  image(cookie, 40, 100, 300, 300);
+  line(405, 0, 405, 720,);
+  strokeWeight(10);
+  // botsing kogel tegen vijand
+
+  // update punten en health
+
+};
 /**
  * return true als het gameover is
  * anders return false
@@ -105,20 +109,21 @@ var checkGameOver = function() {
  * de p5 library, zodra het spel geladen is in de browser
  */
 function preload() {
+  backimage = loadImage('background.png');
   cookie = loadImage('cookie.png');
-  backimage = loadImage('background.png')
+  
   //achtergrond = loadImage ('achtergrond.png');
 
-}
+};
 
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
-  createCanvas(window.innerWidth, window.innerHeight);
+  createCanvas(1280, 720);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
   //background('blue');
   
-}
+};
 
 /**
  * draw
@@ -127,9 +132,10 @@ function setup() {
  */
 function draw() {
   if (spelStatus === SPELEN) {
+    tekenAlles();
     beweegAlles();
     verwerkBotsing();
-    tekenAlles();
+    
     
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
@@ -139,4 +145,4 @@ function draw() {
     // teken game-over scherm
 
   }
-}
+};
