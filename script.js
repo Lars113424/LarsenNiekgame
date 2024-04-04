@@ -20,6 +20,7 @@ const GAMEOVER = 2;
 var spelStatus = SPELEN;
 var backimage;
 var cookie;
+var AmountCookies = 0;
 
 //var achtergrond;
 
@@ -36,14 +37,11 @@ var D = 68;
 /**
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
-var beweegAlles = function() {
+var klikken = function() {
   // speler
-  if (keyIsDown (D)) {
-    spelerX = spelerX + 20;
-  } else {
-    spelerX = 290;
-  }
-
+//  if (MouseEvent ) {
+//     AmountCookies = AmountCookies + 1;
+//   }; 
 
   // vijand
  
@@ -86,7 +84,7 @@ var verwerkBotsing = function() {
   line(405, 0, 405, 720,);
   strokeWeight(10);
   text("Cookie's Eaten;", 40, 100)
-  text("Cookie's Eaten;", 40, 100)
+  text(AmountCookies, 40, 150)
   textSize(46);
   // botsing kogel tegen vijand
 
@@ -136,7 +134,7 @@ function setup() {
 function draw() {
   if (spelStatus === SPELEN) {
     tekenAlles();
-    beweegAlles();
+    klikken();
     verwerkBotsing();
     
     
