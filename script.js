@@ -20,7 +20,7 @@ const GAMEOVER = 2;
 var spelStatus = SPELEN;
 var backimage;
 var cookie;
-var AmountCookies = 0;
+let AmountCookies = 0;
 
 //var achtergrond;
 
@@ -38,15 +38,32 @@ var D = 68;
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
 var klikken = function() {
-  // speler
-//  if (MouseEvent ) {
-//     AmountCookies = AmountCookies + 1;
-//   }; 
+  var isKlikBezig = false; // Vlagvariabele om bij te houden of er al een klik bezig is
+  
+  canvas.addEventListener('click', function(event) {
+    event.stopPropagation(); // Stop event bubbling
 
-  // vijand
- 
-  // kogel
+    if (isKlikBezig) return; // Als er al een klik bezig is, doe niets
+    
+    isKlikBezig = true;
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Controleer of de klik binnen de grenzen van de cookie-afbeelding valt
+    if (x >= 40 && x <= 240 && y >= 100 && y <= 300) {
+        // Verhoog cookiehoeveelheid met 1
+        AmountCookies += 1;
+        // Werk display bij
+        console.log("Aantal cookies: " + AmountCookies);
+    }
+
+    // Markeer dat de klik is voltooid
+    isKlikBezig = false;
+  });
 };
+
 
 /**
  * Checkt botsingen
