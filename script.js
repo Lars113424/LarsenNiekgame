@@ -27,44 +27,13 @@ let AmountCookies = 0;
 var spelerX = 0; // x-positie van speler
 var spelerY = 100;
 
-var D = 68;
- // y-positie van speler
 
-/* ********************************************* */
-/* functies die je gebruikt in je game           */
-/* ********************************************* */
-
-/**
- * Updatet globale variabelen met posities van speler, vijanden en kogels
- */
-var klikken = function() {
-  var isKlikBezig = false; // Vlagvariabele om bij te houden of er al een klik bezig is
-  
-  canvas.addEventListener('click', function(event) {
-    event.stopPropagation(); // Stop event bubbling
-
-    if (isKlikBezig) return; // Als er al een klik bezig is, doe niets
-    
-    isKlikBezig = true;
-    
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    // Controleer of de klik binnen de grenzen van de cookie-afbeelding valt
-    if (x >= 40 && x <= 240 && y >= 100 && y <= 300) {
-        // Verhoog cookiehoeveelheid met 1
-        AmountCookies += 1;
-        // Werk display bij
-        console.log("Aantal cookies: " + AmountCookies);
-    }
-
-    // Markeer dat de klik is voltooid
-    isKlikBezig = false;
-  });
+var mouseClicked = function() {
+  if (mouseX > 110 && mouseX < 280 && mouseY > 175 && mouseY < 340) {
+      AmountCookies = AmountCookies + 1;
+      //geeft een cookie per click
+  }
 };
-
-
 /**
  * Checkt botsingen
  * Verwijdert neergeschoten dingen
@@ -81,6 +50,8 @@ var klikken = function() {
 var tekenAlles = function() {
   // achtergrond
   image(backimage, 0, 0, 1280, 720);
+
+
   // vijand
 
   // kogel
@@ -95,17 +66,20 @@ var tekenAlles = function() {
  
 };
 
-var verwerkBotsing = function() {
-  // botsing speler tegen vijand
+var design = function() {
+  //cookie
   image(cookie, 40, 100, 300, 300);
+  //lines
   line(405, 0, 405, 720,);
+  line(1108, 0, 1108, 720,);
   strokeWeight(10);
-  text("Cookie's Eaten;", 40, 100)
-  text(AmountCookies, 40, 150)
+  //cookie text
+  text("Cookie's Eaten;", 40, 60)
+  text(AmountCookies, 190, 100)
   textSize(46);
-  // botsing kogel tegen vijand
+ //upgrades
 
-  // update punten en health
+ //gebouwen
 
 };
 /**
@@ -151,8 +125,7 @@ function setup() {
 function draw() {
   if (spelStatus === SPELEN) {
     tekenAlles();
-    klikken();
-    verwerkBotsing();
+    design();
     
     
     if (checkGameOver()) {
