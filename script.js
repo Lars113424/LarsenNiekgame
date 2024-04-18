@@ -24,6 +24,7 @@ var backimage;
 var cookie;
 var BuildingButton;
 var muis;
+var magnetron;
 
 //cookie variabelen 
 let AmountCookies = 0;
@@ -33,11 +34,10 @@ let CPS = 0;
 
 //cookies per seconde
 function addCookiesPerSecond() {
-  AmountCookies = AmountCookies + CPS; 
-  console.log("Aantal cookies: " + AmountCookies); // Uitvoer naar de console, je kunt dit naar wens aanpassen
+  AmountCookies = AmountCookies + 0.5 * CPS; 
 }
 //speelt functie elke seconde af
- setInterval(addCookiesPerSecond, 1000);
+ setInterval(addCookiesPerSecond, 500);
 
 //cookie click functie
 
@@ -49,13 +49,21 @@ var mouseClicked = function() {
       AmountCookies = AmountCookies + 1;
       //geeft een cookie per click
   }
+     //Muis gebouw
+  if (mouseX > 410 && mouseX < 925 && mouseY > 145 && mouseY < 280 && AmountCookies >= 10) {
 
-  if (mouseX > 410 && mouseX < 925 && mouseY > 145 && mouseY < 280) { 
-    if (AmountCookies - 10 >= 0)  {
-     CPS++;
+      CPS = CPS + 0.5;
       AmountCookies = AmountCookies - 10;
-    }
+
   }
+     //magnetron gebouw
+  if (mouseX > 410 && mouseX < 925 && mouseY > 280 && mouseY < 425 && AmountCookies >= 200) {
+
+    CPS = CPS + 10;
+    AmountCookies = AmountCookies - 200;
+  
+  }
+  
 };
 
 var tekenAlles = function() {
@@ -86,42 +94,37 @@ var design = function() {
 
   //cookie text
   textSize(46);
-  text("Cookie's Eaten;", 40, 50);
+  text("Cookie's Munched;", 10, 50);
   text(AmountCookies, 190, 85);
   
- //upgrades
+ //gebouwen
   image(BuildingButton, 410, 50, 514, 350);
   image(muis, 420, 120, 200, 200);
-
- //upgrade text
   textSize(30);
   text("Mouse; 10 cookies", 560, 210);
   textSize(20);
   text("cookie's per second; 0.5", 561, 240)
 
- //gebouwen
+  image(BuildingButton, 410, 190, 514, 350);
+  image(magnetron, 450, 310, 100, 120)
+  textSize(30);
+  text("Magnetron; 200 cookies", 560, 350);
+  textSize(20);
+  text("cookie's per second; 10", 561, 380)
+  
+
+ //upgrades
 
 };
 
-var checkGameOver = function() {
-  // check of HP 0 is , of tijd op is, of ...
-  return false;
-};
 
-/* ********************************************* */
-/* setup() en draw() functies / hoofdprogramma   */
-/* ********************************************* */
 
-/**
- * setup
- * de code in deze functie wordt één keer uitgevoerd door
- * de p5 library, zodra het spel geladen is in de browser
- */
 function preload() {
   backimage = loadImage('afbeeldingen/background.png');
   cookie = loadImage('afbeeldingen/cookie.png');
   BuildingButton = loadImage('afbeeldingen/button.png');
   muis = loadImage('afbeeldingen/Muis.png');
+  magnetron = loadImage('afbeeldingen/magnetron.png')
   
   //achtergrond = loadImage ('achtergrond.png');
 
@@ -131,8 +134,7 @@ function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
-  // Kleur de achtergrond blauw, zodat je het kunt zien
-  //background('blue');
+
   
 };
 
@@ -145,14 +147,6 @@ function draw() {
   if (spelStatus === SPELEN) {
     tekenAlles();
     design();
-    
-    
-    if (checkGameOver()) {
-      spelStatus = GAMEOVER;
-    }
-  }
-  if (spelStatus === GAMEOVER) {
-    // teken game-over scherm
 
   }
 };
