@@ -30,6 +30,12 @@ var magnetron;
 let AmountCookies = 0;
 let CPS = 0;
 
+//prijs variabelen
+var muisPrice = 10;
+var muisAmount = 0;
+
+var magnetronPrice = 200;
+var magnetronAmount = 0;
 
 
 //cookies per seconde
@@ -50,17 +56,21 @@ var mouseClicked = function() {
       //geeft een cookie per click
   }
      //Muis gebouw
-  if (mouseX > 410 && mouseX < 925 && mouseY > 145 && mouseY < 280 && AmountCookies >= 10) {
+  if (mouseX > 410 && mouseX < 925 && mouseY > 145 && mouseY < 280 && AmountCookies >= muisPrice) {
 
       CPS = CPS + 0.5;
-      AmountCookies = AmountCookies - 10;
+      AmountCookies = AmountCookies - muisPrice;
+      muisPrice = muisPrice * 1.15^muisAmount;
+      muisAmount++;
 
   }
      //magnetron gebouw
-  if (mouseX > 410 && mouseX < 925 && mouseY > 280 && mouseY < 425 && AmountCookies >= 200) {
+  if (mouseX > 410 && mouseX < 925 && mouseY > 280 && mouseY < 425 && AmountCookies >= magnetronPrice) {
 
     CPS = CPS + 10;
-    AmountCookies = AmountCookies - 200;
+    AmountCookies = AmountCookies - magnetronPrice;
+    magnetronPrice = magnetronPrice * 1.15^magnetronAmount;
+    magnetronAmount++;
   
   }
   
@@ -101,7 +111,7 @@ var design = function() {
   image(BuildingButton, 410, 50, 514, 350);
   image(muis, 420, 120, 200, 200);
   textSize(30);
-  text("Mouse; 10 cookies", 560, 210);
+  text("Muis; " + muisPrice + " cookies", 560, 210);
   textSize(20);
   text("cookie's per second; 0.5", 561, 240)
 
