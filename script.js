@@ -29,11 +29,14 @@ var magnetron;
 //cookie variabelen 
 let AmountCookies = 0;
 let CPS = 0;
+let AmountCookiesShow = 0;
 
 //prijs variabelen
+const muisBasePrice = 10;
 var muisPrice = 10;
 var muisAmount = 0;
 
+const magnetronBasePrice = 200;
 var magnetronPrice = 200;
 var magnetronAmount = 0;
 
@@ -60,8 +63,10 @@ var mouseClicked = function() {
 
       CPS = CPS + 0.5;
       AmountCookies = AmountCookies - muisPrice;
-      muisPrice = muisPrice * 1.15^muisAmount;
-      muisAmount++;
+      muisAmount += 1;
+      muisPrice = muisBasePrice * 1.15 ** muisAmount;
+      
+      
 
   }
      //magnetron gebouw
@@ -69,8 +74,9 @@ var mouseClicked = function() {
 
     CPS = CPS + 10;
     AmountCookies = AmountCookies - magnetronPrice;
-    magnetronPrice = magnetronPrice * 1.15^magnetronAmount;
-    magnetronAmount++;
+    magnetronAmount += 1;
+    magnetronPrice = magnetronBasePrice * 1.15 ** magnetronAmount;
+   
   
   }
   
@@ -88,6 +94,7 @@ var tekenAlles = function() {
 var design = function() {
   //cookie
   image(cookie, 40, 100, 300, 300);
+  let AmountCookiesShow = Math.round(AmountCookies)
   //lines
   strokeWeight(10);
   line(405, 0, 405, 720,);
@@ -98,27 +105,30 @@ var design = function() {
   
   //locatie test (later weghalen)
   textSize(50);
-  text(mouseX, 1000, 80);
-  text(mouseY, 1000, 120);
+  text(mouseX, 80, 620);
+  text(mouseY, 80, 660);
  
 
   //cookie text
   textSize(46);
   text("Cookie's Munched;", 10, 50);
-  text(AmountCookies, 190, 85);
+  text(AmountCookiesShow, 190, 85);
+  textSize(25);
+  text("Cps; " + CPS, 160, 120);
+  
   
  //gebouwen
   image(BuildingButton, 410, 50, 514, 350);
   image(muis, 420, 120, 200, 200);
   textSize(30);
-  text("Muis; " + muisPrice + " cookies", 560, 210);
+  text("Muis; " + Math.round(muisPrice) + " cookies", 560, 210);
   textSize(20);
   text("cookie's per second; 0.5", 561, 240)
 
   image(BuildingButton, 410, 190, 514, 350);
   image(magnetron, 450, 310, 100, 120)
   textSize(30);
-  text("Magnetron; 200 cookies", 560, 350);
+  text("Magnetron; " + Math.round(magnetronPrice) + " cookies", 560, 350);
   textSize(20);
   text("cookie's per second; 10", 561, 380)
   
