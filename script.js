@@ -69,21 +69,19 @@ var mouseClicked = function() {
       floatingText.style.position = "absolute";
       floatingText.style.color = "black";
       floatingText.style.fontSize = "20px";
-      floatingText.style.left = mouseX + "px";
+      floatingText.style.left = mouseX + 470 + "px";
       floatingText.style.top = mouseY + "px";
       document.body.appendChild(floatingText);
 
-      // Functie om het tekst element doorzichtiger te maken en omhoog te laten zweven
+      // laat het tekst element doorzichtiger maken en omhoog zweven
       function animateFloatingText() {
-          var xPos = mouseX;
-          var yPos = mouseY; // startpositie verticaal
+          var yPos = mouseY; 
           var transparency = 1.0; // startdoorzichtigheid
 
           // Functie voor animatie
           function animate() {
               // Verhoog de verticale positie
               yPos -= 1;
-              xPos = mouseX
               // Verlaag de doorzichtigheid
               transparency -= 0.01;
 
@@ -138,6 +136,7 @@ var mouseClicked = function() {
   
 };
 
+
 var tekenAlles = function() {
   // achtergrond
   image(backimage, 0, 0, 1280, 720);
@@ -151,6 +150,14 @@ var design = function() {
   //cookie
   image(cookie, 40, 100, 300, 300);
   let AmountCookiesShow = Math.round(AmountCookies)
+
+  if (mouseX > 110 && mouseX < 280 && mouseY > 175 && mouseY < 340) {
+    // Verander de cursor in een wijzervorm
+    document.body.style.cursor = "pointer"; } 
+  else {
+    // Verander de cursor terug naar de standaardstijl als de muis zich buiten het gebied bevindt
+    document.body.style.cursor = "default"; }
+
   //lines
   fill(0, 0, 0)
   strokeWeight(10);
