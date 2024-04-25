@@ -28,10 +28,10 @@ var magnetron;
 var clicker;
 
 //cookie variabelen 
-let AmountCookies = 500;
+let AmountCookies = 0;
 let CPS = 0;
 let AmountCookiesShow = 0;
-let AmountClicked = 200;
+let AmountClicked = 0;
 let ClickerMultiply =1;
 
 //prijs variabelen
@@ -64,13 +64,14 @@ var mouseClicked = function() {
       textSize(20);
 
       // Maak een tekst element aan
+      document.body.style.fontFamily = "'Arial, Helvetica, sans-serif'";
       var floatingText = document.createElement("div");
       floatingText.textContent = "+" + ClickerMultiply;
       floatingText.style.position = "absolute";
-      floatingText.style.color = "black";
+      floatingText.style.color = "white";
       floatingText.style.fontSize = "20px";
       floatingText.style.left = mouseX + 470 + "px";
-      floatingText.style.top = mouseY + "px";
+      floatingText.style.top = mouseY - 20 + "px";
       document.body.appendChild(floatingText);
 
       // laat het tekst element doorzichtiger maken en omhoog zweven
@@ -86,7 +87,7 @@ var mouseClicked = function() {
               transparency -= 0.01;
 
               // Pas de positie en doorzichtigheid van het tekst element aan
-              floatingText.style.top = yPos + "px";
+              floatingText.style.top = yPos - 20 + "px";
               floatingText.style.opacity = transparency;
 
               // Stop de animatie als de doorzichtigheid nul wordt
@@ -168,12 +169,14 @@ var design = function() {
   line(1280, 140, 0, 140);
   
   //locatie test (later weghalen)
+  fill(255, 255, 255)
   textSize(50);
   text(mouseX, 80, 620);
   text(mouseY, 80, 660);
  
 
   //cookie text
+  document.body.style.fontFamily = "'Arial, Helvetica, sans-serif'";
   textSize(46);
   text("Cookie's Munched;", 10, 50);
   text(AmountCookiesShow, 190, 85);
