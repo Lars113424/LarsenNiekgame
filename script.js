@@ -27,6 +27,9 @@ var muis;
 var magnetron;
 var clicker;
 
+//geluiden
+var clickGeluid;
+
 //cookie variabelen 
 let AmountCookies = 0;
 let CPS = 0;
@@ -61,6 +64,7 @@ var mouseClicked = function() {
       AmountCookies = AmountCookies + ClickerMultiply;
       //geeft een cookie per click
       AmountClicked++;
+      clickGeluid.play();
       textSize(20);
 
       // Maak een tekst element aan
@@ -223,7 +227,7 @@ function preload() {
   muis = loadImage('afbeeldingen/Muis.png');
   magnetron = loadImage('afbeeldingen/magnetron.png');
   clicker = loadImage('afbeeldingen/clicker-upgrade.png')
-  
+  clickGeluid = new Audio('clickGeluid.mp3')
   //achtergrond = loadImage ('achtergrond.png');
 
 };
